@@ -23,12 +23,14 @@ module Dare
       opts[:height] ||= 480
       opts[:update_interval] ||= 16.6666666
       opts[:clock] ||= Clock.new(update_interval: opts[:update_interval])
+      opts[:canvas] ||= Canvas.new(width: opts[:width], height: opts[:height])
+      opts[:no_mouse] ||= false
       @width = opts[:width]
       @height = opts[:height]
       @clock = opts[:clock]
       @ticks = 0
-      @canvas = Canvas.new(width: @width, height: @height)
-      add_mouse_event_listener
+      @canvas = opts[:canvas]
+      add_mouse_event_listener unless opts[:no_mouse]
     end
     def run!
       @clock.start do
