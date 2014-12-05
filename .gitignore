@@ -1,5 +1,7 @@
 *.gem
 *.rbc
+*.json
+*.lock
 .rspec
 /.config
 /coverage/
