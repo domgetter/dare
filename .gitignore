@@ -11,6 +11,7 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
+/examples/example.js
 
 ## Specific to RubyMotion:
 .dat*
