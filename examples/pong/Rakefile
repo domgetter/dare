@@ -1,0 +1,11 @@
+desc "Build pong.js"
+task :build do
+  require 'opal'
+  env = Opal::Environment.new
+  env.append_path "."
+  env.append_path `gem which dare`.chomp
+
+  File.open("pong.js", "w+") do |out|
+    out << env["pong"].to_s
+  end
+end

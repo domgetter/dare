@@ -1,13 +1,13 @@
-desc "Build example.js"
-task :dare do
+desc "Build mario.js"
+task :mario do
   require 'opal'
   require 'opal-jquery'
   env = Opal::Environment.new
   env.append_path "lib"
-  env.append_path "examples"
+  env.append_path "examples/mario"
 
-  File.open("examples/example.js", "w+") do |out|
-    out << env["example"].to_s
+  File.open("examples/mario/mario.js", "w+") do |out|
+    out << env["mario"].to_s
   end
 end
 

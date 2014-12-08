@@ -2,6 +2,7 @@
 *.rbc
 *.json
 *.lock
+*.mp3
 .rspec
 /.config
 /coverage/
