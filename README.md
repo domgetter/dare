@@ -34,4 +34,70 @@ And then from the command line:
 
 Which will create a some_file.js file and an index.html file.  Open index.html in your favorite browser, and play your game!
 
+TODO:
+
+1. Figure out Opal-rspec stuff
+2. make it so `dare new app_name` makes a few useful files in a directory
+  a. like this:
+
+    create app_name
+    create app_name/Gemfile
+    create app_name/Rakefile
+    create app_name/app_name.rb
+    create app_name/app_name.html
+
+  b. where Gemfile contains
+
+    gem 'dare', '0.0.2 or whatever version'
+
+  and Rakefile contains
+
+    desc "Build app_name.js"
+    task :build do
+      require 'opal'
+      env = Opal::Environment.new
+      env.append_path "."
+      env.append_path `bundle show dare`.chomp
+
+      File.open("app_name.js", "w+") do |out|
+        out << env["app_name"].to_s
+      end
+    end
+
+  and app_name.rb contains
+
+    require 'dare'
+
+    class AppName < Dare::Window
+
+      def initialize
+        super width: 640, height: 480
+      end
+
+      def draw
+        #code that runs every frame
+      end
+
+      def update
+        #code that runs every frame
+      end
+
+    end
+
+  and app_name.html contains
+
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <script src="http://cdn.opalrb.org/opal/0.6.3/opal.min.js"></script>
+      </head>
+      <body>
+        <script src="app_name.js"></script>
+      </body>
+    </html>
+
+  or something like that.
+
+3. documentation
+
 Huge shoutout to jlnr for his [Gosu](https://github.com/jlnr/gosu) gem which fueled a major part of this API.  Go check out his work!
