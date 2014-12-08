@@ -33,3 +33,5 @@ And then from the command line:
     dare build some_file.rb
 
 Which will create a some_file.js file and an index.html file.  Open index.html in your favorite browser, and play your game!
+
+Huge shoutout to jlnr for his [Gosu](https://github.com/jlnr/gosu) gem which fueled a major part of this API.  Go check out his work!
