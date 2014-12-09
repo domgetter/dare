@@ -1,3 +1,4 @@
+require 'opal-jquery'
 require 'dare/clock.rb'
 require 'dare/sound.rb'
 require 'dare/font.rb'
@@ -14,5 +15,8 @@ module Dare
   end
   def self.ms
     `(new Date()).getTime()`
+  end
+  class << self
+    attr_accessor :default_window
   end
 end

@@ -5,7 +5,7 @@ class Level
 
   attr_reader :background_color, :images
 
-  def initialize(window, path)
+  def initialize(path, window = Dare.default_window)
     @data = JSON.parse("{\n  \"id\":\"level1\",\n  \"background_color\":\"#6f84ff\",\n  \"tiles\":{\n    \"bricks\":{\n      \"ground\":[[0,12,16,12],[0,13,14,13]],\n      \"question_mark\":[[8,16]]\n    },\n    \"background\":{\n      \"hill_5\":[[0,8]],\n      \"shrub_5\":[[11,10]],\n      \"hill_3\":[[16,9]]\n    }\n  }\n}")
     @background_color = @data["background_color"]
     @tiles = @data["tiles"]
@@ -15,15 +15,15 @@ class Level
 
   def load_images
     @images = {}
-    @images[:block_ground] = Dare::Image.new(@window, 'block_ground.png')
-    @images[:bg_hill_5] = Dare::Image.new(@window, 'bg_hill_5.png')
-    @images[:bg_shrub_5] = Dare::Image.new(@window, 'bg_shrub_5.png')
+    @images[:block_ground] = Dare::Image.new('assets/block_ground.png')
+    @images[:bg_hill_5] = Dare::Image.new('assets/bg_hill_5.png')
+    @images[:bg_shrub_5] = Dare::Image.new('assets/bg_shrub_5.png')
   end
 end
 
 class Camera
   attr_accessor :x
-  def initialize(window)
+  def initialize(window = Dare.default_window)
     @window = window
     @x = 0
   end
@@ -49,15 +49,17 @@ class Game < Dare::Window
 
   def initialize
     super width: WIDTH, height: HEIGHT, border: true
-    @level = Level.new(self, 'level1.json')
-    @camera = Camera.new(self)
-    @font = Dare::Font.new(self, "16px Arial")
-    @mario = Dare::Sprite.new(self)
-    @mario.images << Dare::Image.new(self, "mario_stand_right.png")
-    @mario.images << Dare::Image.new(self, "mario_stop_right.png")
-    @mario.images << Dare::Image.new(self, "mario_walk_right_1.png")
-    @mario.images << Dare::Image.new(self, "mario_walk_right_2.png")
-    @mario.images << Dare::Image.new(self, "mario_walk_right_3.png")
+    Dare.default_window = self
+    @level = Level.new('level1.json')
+    @camera = Camera.new
+    @font = Dare::Font.new("16px Arial")
+    @mario = Dare::Sprite.new
+    @mario.state[:stand_right] << Dare::Image.new("assets/mario_stand_right.png")
+    @mario.state[:stop_right] << Dare::Image.new("assets/mario_stand_left.png")
+    @mario.state[:stop_right].next = @mario.state[:walk_left]
+    @mario.state[:walk_right] << Dare::Image.new("assets/mario_walk_right_1.png")
+    @mario.state[:walk_right] << Dare::Image.new("assets/mario_walk_right_2.png")
+    @mario.state[:walk_right] << Dare::Image.new("assets/mario_walk_right_3.png")
   end
 
   def draw

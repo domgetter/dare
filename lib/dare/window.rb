@@ -112,7 +112,7 @@ module Dare
   end
   class Coordinates < Struct.new(:x, :y); end
   class Image
-    def initialize(window, path = "")
+    def initialize(path = "", window = Dare.default_window)
       @img = `new Image()`
       `#{@img}.src = #{path}`
       @window = window

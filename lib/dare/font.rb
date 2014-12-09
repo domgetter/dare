@@ -1,6 +1,6 @@
 module Dare
   class Font
-    def initialize(window, font_type = "30px Arial")
+    def initialize(window = Dare.default_window, font_type = "30px Arial")
       @window = window
       @font = font_type
       @color = "red"
