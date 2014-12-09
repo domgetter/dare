@@ -6,12 +6,13 @@ class DareCLI < Thor
   desc "new", "creates a new app"
   def new(app_name)
     add_file("#{app_name}/Gemfile") do
-      "gem 'dare', '#{Dare::VERSION}'"
+      "gem 'dare', '0.0.8'"
     end
     add_file "#{app_name}/Rakefile" do
 "desc \"Build #{app_name}.js\"
 task :build do
   require 'opal'
+  require 'opal-jquery'
   env = Opal::Environment.new
   env.append_path \".\"
   env.append_path `bundle show dare`.chomp
@@ -23,11 +24,12 @@ end"
     end
     add_file "#{app_name}/#{app_name}.rb" do
 "require 'dare'
+require 'opal-jquery'
 
-class AppName < Dare::Window
+class #{app_name[0].upcase + app_name[1..-1]} < Dare::Window
 
   def initialize
-    super width: 640, height: 480
+    super width: 640, height: 480, border: true
   end
 
   def draw
@@ -38,16 +40,19 @@ class AppName < Dare::Window
     #code that runs every frame
   end
 
-end"
+end
+
+#{app_name[0].upcase + app_name[1..-1]}.new.run!"
     end
     add_file "#{app_name}/#{app_name}.html" do
 "<!DOCTYPE html>
 <html>
   <head>
+    <script src=\"http://code.jquery.com/jquery-1.11.0.min.js\"></script>
     <script src=\"http://cdn.opalrb.org/opal/0.6.3/opal.min.js\"></script>
   </head>
   <body>
-    <script src=\"app_name.js\"></script>
+    <script src=\"#{app_name}.js\"></script>
   </body>
 </html>"
     end

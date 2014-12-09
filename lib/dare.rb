@@ -5,7 +5,7 @@ require 'dare/sprite.rb'
 require 'dare/window.rb'
 
 module Dare
-  VERSION = "0.0.2"
+  VERSION = "0.0.8"
   def self.offset_x(angle, magnitude)
     `#{magnitude}*Math.cos(#{angle}*Math.PI/180.0)`
   end
