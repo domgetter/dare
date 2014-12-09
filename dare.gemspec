@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = 'Ruby 2D Game library on top of Opal'
   spec.authors = ["Dominic Muller"]
   spec.email = 'nicklink483@gmail.com'
-  spec.files = Dir['bin/dare', 'lib/*/**', 'lib/*.*']
+  spec.files = Dir['bin/dare', 'lib/*/**', 'lib/*.rb']
   spec.executables = ["dare"]
   spec.require_paths = ["lib"]
 
