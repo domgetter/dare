@@ -6,7 +6,7 @@ class DareCLI < Thor
   desc "new", "creates a new app"
   def new(app_name)
     add_file("#{app_name}/Gemfile") do
-      "gem 'dare', '0.0.8'"
+      "gem 'dare', '0.0.9'"
     end
     add_file "#{app_name}/Rakefile" do
 "desc \"Build #{app_name}.js\"
@@ -15,7 +15,7 @@ task :build do
   require 'opal-jquery'
   env = Opal::Environment.new
   env.append_path \".\"
-  env.append_path `bundle show dare`.chomp
+  env.append_path `bundle show dare`.chomp + '/lib'
 
   File.open(\"#{app_name}.js\", \"w+\") do |out|
     out << env[\"#{app_name}\"].to_s
