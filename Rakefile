@@ -8,8 +8,8 @@
 #end
 #task default: :spec
 
-require 'jquery'
 require 'opal/rspec/rake_task'
+
 require 'opal-jquery'
 Opal::RSpec::RakeTask.new(:default) do |t|
   t.append_path 'lib'
