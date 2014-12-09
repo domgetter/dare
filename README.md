@@ -43,8 +43,6 @@ Just keep in mind the "change ruby code" => "rake build" => "refresh browser" de
 
 TODO:
 
-1. Figure out Opal-rspec stuff
-
-2. documentation
+1. documentation
 
 Huge shoutout to jlnr for his [Gosu](https://github.com/jlnr/gosu) gem which fueled a major part of this API.  Go check out his work!
