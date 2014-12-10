@@ -2,7 +2,7 @@ desc "Build mario.js"
 task :build do
   require 'opal'
   require 'opal-jquery'
-  Opal::Processor.source_map_enabled = false
+
   env = Opal::Environment.new
   env.append_path "."
   env.append_path "../../lib"

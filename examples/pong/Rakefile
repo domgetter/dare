@@ -1,9 +1,14 @@
+
+  
 desc "Build pong.js"
 task :build do
+  gem 'opal', '0.6.3'
   require 'opal'
+  require 'opal-jquery'
+  puts Opal::VERSION
   env = Opal::Environment.new
   env.append_path "."
-  env.append_path `bundle show dare`.chomp
+  env.append_path "../../lib"
 
   File.open("pong.js", "w+") do |out|
     out << env["pong"].to_s
