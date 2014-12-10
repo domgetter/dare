@@ -1,4 +1,4 @@
-dare
+![Dare Logo](/images/logo.png) Dare
 ====
 [![Gem Version](https://badge.fury.io/rb/dare.svg)](http://badge.fury.io/rb/dare)
 [![Build Status](https://travis-ci.org/nicklink483/dare.svg?branch=master)](https://travis-ci.org/nicklink483/dare)
