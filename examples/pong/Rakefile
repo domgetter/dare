@@ -1,12 +1,14 @@
+gem 'opal', '0.6.3'
+require 'opal'
+require 'opal-jquery'
 
-  
 desc "Build pong.js"
 task :build do
-  gem 'opal', '0.6.3'
-  require 'opal'
-  require 'opal-jquery'
-  puts Opal::VERSION
-  env = Opal::Environment.new
+  Opal::Processor.source_map_enabled = false
+  env = Sprockets::Environment.new
+  Opal.paths.each do |path|
+    env.append_path path
+  end
   env.append_path "."
   env.append_path "../../lib"
 

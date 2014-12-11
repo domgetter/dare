@@ -1,6 +1,4 @@
 module Dare
-  KbRight = 39
-  KbLeft = 37
   class Canvas
     attr_reader :id, :canvas
     def initialize(opts = {})
@@ -111,14 +109,4 @@ module Dare
 
   end
   class Coordinates < Struct.new(:x, :y); end
-  class Image
-    def initialize(path = "", window = Dare.default_window)
-      @img = `new Image()`
-      `#{@img}.src = #{path}`
-      @window = window
-    end
-    def draw(x = 0, y = 0)
-      `#{@window.canvas.context}.drawImage(#{@img},#{x},#{y})`
-    end
-  end
 end

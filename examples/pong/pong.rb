@@ -123,8 +123,8 @@ class Game < Dare::Window
     @paddles[0] = Paddle.new(self, :left)
     @paddles[1] = Paddle.new(self, :right)
     @boops = {}
-    @boops[:paddle] = Dare::Sound.new('pong_bounce.mp3')
-    @boops[:wall] = Dare::Sound.new('wall_bounce.mp3')
+    @boops[:paddle] = Dare::Sound.new('assets/pong_bounce.mp3', 0.3)
+    @boops[:wall] = Dare::Sound.new('assets/wall_bounce.mp3', 0.3)
     @score_font = Dare::Font.new(self)
     @score = 10
   end
