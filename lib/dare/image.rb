@@ -7,7 +7,7 @@ module Dare
     # loads a new image resource
     # image = Dare::Image.new('some_image.png')
     #
-    def initialize(path = "", window = Dare.default_window)
+    def initialize(path = "", window = Dare.default_canvas)
       @img = `new Image()`
       `#{@img}.src = #{path}`
       @window = window

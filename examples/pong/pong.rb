@@ -36,14 +36,14 @@ end
 
 class Ball
 
-  def initialize(window)
+  def initialize(game)
     reset!
     @size = 10
-    @window = window
+    @game = game
   end
 
   def draw
-    @window.draw_rect(
+    @game.draw_rect(
       top_left: [@x-@size,@y-@size],
       width: 2*@size,
       height: 2*@size,
@@ -53,9 +53,9 @@ class Ball
 
   def update
     check_bounds
-    if overlapped_with(@window.paddles[0])
+    if overlapped_with(@game.paddles[0])
       @angle = (180.0-@angle)
-      @window.boops[:paddle].play
+      @game.boops[:paddle].play
     end
     @x += Dare.offset_x(@angle, @speed)
     @y += Dare.offset_y(@angle, @speed)
@@ -63,7 +63,7 @@ class Ball
 
   def check_bounds
     if (@x > Game::WIDTH)
-      @window.score += 1
+      @game.score += 1
       reset!
     end
     if (@x < 0)
@@ -71,7 +71,7 @@ class Ball
     end
     if (@y > Game::HEIGHT-@size) || (@y < 0+@size)
       @angle = 360.0-@angle
-      @window.boops[:wall].play
+      @game.boops[:wall].play
     end
   end
 

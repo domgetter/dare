@@ -1,7 +1,7 @@
 module Dare
   class Sprite
     attr_accessor :images, :state
-    def initialize(window = Dare.default_window)
+    def initialize(window = Dare.default_canvas)
       @window = window
       @images = []
       @state = Hash.new {|h,k| h[k] = Dare::AnimationState.new}
