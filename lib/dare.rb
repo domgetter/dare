@@ -22,7 +22,7 @@ module Dare
   # Dare.offset_x(45, 10) # returns 10 times the square root of 2
   #
   def self.offset_x(angle, magnitude)
-    `#{magnitude}*Math.cos(#{angle}*Math.PI/180.0)`
+    `#{magnitude}*Math.cos(-#{angle}*Math.PI/180.0)`
   end
 
   # returns the magnitude of the vertical component of a vector
@@ -34,7 +34,7 @@ module Dare
   # Dare.offset_y(45, 10) # returns 10 times the square root of 2
   #
   def self.offset_y(angle, magnitude)
-    `#{magnitude}*Math.sin(#{angle}*Math.PI/180.0)`
+    `#{magnitude}*Math.sin(-#{angle}*Math.PI/180.0)`
   end
 
   # returns the number of milliseconds since the Unix epoch
