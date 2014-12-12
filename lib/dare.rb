@@ -1,12 +1,6 @@
+require 'opal' #this will be removed when 0.7.0 is released
 require 'opal-jquery'
-# Dir["dare/*.rb"].each {|f| require f } # can't do this because Opal
-require "dare/canvas.rb"
-require "dare/font.rb"
-require "dare/image.rb"
-require "dare/keyboard_constants.rb"
-require "dare/sound.rb"
-require "dare/sprite.rb"
-require "dare/window.rb"
+require_tree 'dare'
 
 module Dare
 
