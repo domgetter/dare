@@ -133,13 +133,11 @@ class Game < Dare::Window
     @ball.draw
     @paddles[0].draw
     @score_font.draw(@score)
-    #@paddles[1].draw
   end
 
   def update
     @ball.update
     @paddles[0].update
-    #@paddles[1].update
   end
 
 end

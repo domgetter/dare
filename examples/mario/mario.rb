@@ -66,7 +66,6 @@ class Game < Dare::Window
     draw_background
     draw_tiles
     @mario.draw(TILE_WIDTH*3, TILE_WIDTH*11)
-    #@font.draw("I hate you Alyssa", 290 - @camera_x, 220)
   end
 
   def update
@@ -79,9 +78,6 @@ class Game < Dare::Window
   end
 
   def draw_tiles
-    #tiles_to_draw.each do |tile|
-    #  tile.draw(TILE_WIDTH*tile.x, TILE_WIDTH*tile.y)
-    #end
     @level.images[:bg_hill_5].draw(TILE_WIDTH*0-@camera.x,TILE_WIDTH*9)
     @level.images[:bg_shrub_5].draw(TILE_WIDTH*11-@camera.x,TILE_WIDTH*11)
     (0..16).each do |x|
