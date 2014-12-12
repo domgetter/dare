@@ -32,8 +32,9 @@ task :build do
 end"
     end
     add_file "#{app_name}/#{app_name}.rb" do
-"require 'dare'
+"require 'opal' #this will be removed when 0.7.0 is released
 require 'opal-jquery'
+require 'dare'
 
 class #{app_name[0].upcase + app_name[1..-1]} < Dare::Window
 
@@ -59,7 +60,8 @@ end
   <head>
     <title id=\"pageTitle\"></title>
     <script src=\"http://code.jquery.com/jquery-1.11.0.min.js\"></script>
-    <script src=\"http://cdn.opalrb.org/opal/0.6.3/opal.min.js\"></script>
+    <!-- Will add this back when 0.7.0 is released -->
+    <!-- <script src=\"http://cdn.opalrb.org/opal/0.7.0/opal.min.js\"></script> -->
   </head>
   <body>
     <script src=\"#{app_name}.js\"></script>

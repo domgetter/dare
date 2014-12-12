@@ -4,8 +4,8 @@ class Paddle
 
   attr_reader :x, :y, :width, :height
 
-  def initialize(window, side)
-    @window = window
+  def initialize(game, side)
+    @game = game
     @side = side
     @x = 20
     @y = Game::HEIGHT/2
@@ -14,7 +14,7 @@ class Paddle
   end
 
   def draw
-    @window.draw_rect(
+    @game.draw_rect(
       top_left: [@x,@y-@height/2],
       width: @width,
       height: @height,
@@ -23,7 +23,7 @@ class Paddle
   end
 
   def update
-    @y = @window.mouse_y || Game::HEIGHT/2
+    @y = @game.mouse_y || Game::HEIGHT/2
     if @y < @height/2
       @y = @height/2
     end
