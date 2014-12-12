@@ -17,8 +17,15 @@ module Dare
     # x and y represent the top-left corner of the image
     # image.draw(100, 200)
     #
-    def draw(x = 0, y = 0, canvas = @canvas)
-      `#{canvas.context}.drawImage(#{@img},#{x},#{y})`
+    # by default, the default canvas is drawn to, but this
+    # can be bypassed by specifying a different canvas to
+    # draw to in the options hash
+    #
+    # image.draw(100, 200, canvas: some_other_canvas)
+    #
+    def draw(x = 0, y = 0, opts = {})
+      opts[:canvas] ||= @canvas
+      `#{opts[:canvas].context}.drawImage(#{@img},#{x},#{y})`
     end
   end
 end
