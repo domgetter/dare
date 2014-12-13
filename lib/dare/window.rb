@@ -115,6 +115,37 @@ module Dare
       `#{@canvas.context}.fillRect(#{x}, #{y}, #{width}, #{height})`
     end
 
+    #works the same as Gosu::Window.draw_quad
+    def draw_quad(x1, y1, c1, x2, y2, c2, x3, y3, c3, x4, y4, c4, z)
+      %x{
+        var QUALITY = 256;
+
+        var canvas_colors = document.createElement( 'canvas' );
+        canvas_colors.width = 2;
+        canvas_colors.height = 2;
+
+        var context_colors = canvas_colors.getContext( '2d' );
+        context_colors.fillStyle = 'rgba(0,0,0,1)';
+        context_colors.fillRect( 0, 0, 2, 2 );
+
+        var image_colors = context_colors.getImageData( 0, 0, 2, 2 );
+        var data = image_colors.data;
+
+        var canvas_render = #{@canvas};
+
+        var context_render = #{@canvas.context};
+        context_render.translate( - QUALITY / 2, - QUALITY / 2 );
+        context_render.scale( QUALITY, QUALITY );
+
+        data[ 0 ] = 255; // Top-left, red component
+        data[ 5 ] = 255; // Top-right, green component
+        data[ 10 ] = 255; // Bottom-left, blue component
+
+        context_colors.putImageData( image_colors, 0, 0 );
+        context_render.drawImage( canvas_colors, 0, 0 );
+      }
+    end
+
     # sets the caption/title of the window to the string passed
     def caption(title)
       `document.getElementById('pageTitle').innerHTML = #{title}`
