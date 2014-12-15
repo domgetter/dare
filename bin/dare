@@ -19,6 +19,7 @@ task :build do
   require 'opal'
   require 'opal-jquery'
   Opal::Processor.source_map_enabled = false
+  Opal::Processor.inline_operators_enabled = true
   env = Sprockets::Environment.new
   Opal.paths.each do |path|
     env.append_path path

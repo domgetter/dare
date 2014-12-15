@@ -37,6 +37,11 @@ module Dare
   def self.ms
     `(new Date()).getTime()`
   end
+
+  def self.distance(x1, y1, x2, y2)
+    `Math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1))`
+  end
+
   class << self
     attr_accessor :default_canvas
   end

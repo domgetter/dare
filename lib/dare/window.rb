@@ -1,4 +1,10 @@
 module Dare
+  class Color
+    attr_accessor :red, :green, :blue
+    def initialize(color)
+
+    end
+  end
   class Window
 
     attr_reader :width, :height, :ticks, :mouse_x, :mouse_y, :canvas, :key, :update_interval
@@ -71,6 +77,9 @@ module Dare
       end
       Element.find("html").on :keyup do |event|
         @keys[get_key_id(event)] = false
+      end
+      ::Window.on :blur do |event|
+        @keys.fill false
       end
     end
 

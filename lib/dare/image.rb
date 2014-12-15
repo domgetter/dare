@@ -1,6 +1,6 @@
 module Dare
 
-  attr_reader :height, :width
+  attr_reader :path, :height, :width
 
   # loads an image which can be drawn to a canvas
   #
@@ -10,9 +10,18 @@ module Dare
     # image = Dare::Image.new('some_image.png')
     #
     def initialize(path = "", canvas = Dare.default_canvas)
+      @path = path
       @img = `new Image()`
       `#{@img}.src = #{path}`
       @canvas = canvas
+    end
+
+    def width
+      `#{@img}.width`
+    end
+
+    def height
+      `#{@img}.height`
     end
 
     # draws image to a canvas at an x and y position
@@ -26,8 +35,27 @@ module Dare
     # image.draw(100, 200, canvas: some_other_canvas)
     #
     def draw(x = 0, y = 0, opts = {})
+
       opts[:canvas] ||= @canvas
-      `#{opts[:canvas].context}.drawImage(#{@img},#{x},#{y})`
+      opts[:sx] ||= 0
+      opts[:sy] ||= 0
+      opts[:swidth] ||= width - opts[:sx]
+      opts[:sheight] ||= height - opts[:sy]
+      opts[:dwidth] ||= opts[:swidth]
+      opts[:dheight] ||= opts[:sheight]
+      %x{
+        #{opts[:canvas].context}.drawImage(
+          #{@img},
+          #{opts[:sx]},
+          #{opts[:sy]},
+          #{opts[:swidth]},
+          #{opts[:sheight]},
+          #{x},
+          #{y},
+          #{opts[:dwidth]},
+          #{opts[:dheight]}
+        );
+      }
     end
 
     # draws image to a canvas at an x and y position and rotated at some angle
@@ -47,6 +75,31 @@ module Dare
         context.rotate(-#{angle}*Math.PI/180.0);
         context.translate(-#{x}, -#{y});
       }
+    end
+
+    def self.load_tiles(path, opts = {})
+      image = Image.new(path)
+      tiles = []
+      (0..9).each do |x|
+        tiles << ImageTile.new(image, x*25, 0, 25, 25)
+      end
+      puts tiles
+
+      tiles
+    end
+  end
+
+  class ImageTile
+    def initialize(image = Image.new, x = 0, y = 0, width = 0, height = 0)
+      @image = image
+      @x = x
+      @y = y
+      @width = width
+      @height = height
+    end
+
+    def draw(x = 0, y = 0, opts = {})
+      @image.draw(x, y, sx: @x, sy: @y, swidth: @width, sheight: @height)
     end
   end
 end
