@@ -1,18 +1,21 @@
 module Dare
   class Font
-    def initialize(window = Dare.default_canvas, font_type = "30px Arial")
-      @window = window
-      @font = font_type
-      @color = "red"
-      @x = 50
-      @y = 50
+    def initialize(opts = {})
+      opts[:font] ||= "Arial"
+      opts[:canvas] ||= Dare.default_canvas
+      opts[:size] ||= 30
+      opts[:color] ||= "black"
+
+      @font = opts[:size].to_s + "px" + " " + opts[:font]
+      @canvas = opts[:canvas]
+      @color = opts[:color]
     end
 
-    def draw(string = "", x = @x, y = @y)
+    def draw(string = "", x = 0, y = 0, opts = {})
       %x{
-        #{@window.canvas.context}.font = #{@font};
-        #{@window.canvas.context}.fillStyle = #{@color};
-        #{@window.canvas.context}.fillText(#{string}, #{x}, #{y});
+        #{@canvas.context}.font = #{@font} ;
+        #{@canvas.context}.fillStyle = #{@color};
+        #{@canvas.context}.fillText(#{string}, #{x}, #{y});
       }
     end
   end

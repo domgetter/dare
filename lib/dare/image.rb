@@ -2,18 +2,21 @@ module Dare
 
   attr_reader :path, :height, :width
 
-  # loads an image which can be drawn to a canvas
+  # Loads an image which can be drawn to a canvas
   #
   class Image
 
-    # loads a new image resource
-    # image = Dare::Image.new('some_image.png')
+    # Loads a new image resource
     #
-    def initialize(path = "", canvas = Dare.default_canvas)
+    # @example
+    #   Dare::Image.new('some_image.png')
+    #
+    def initialize(path = "", opts = {})
+      opts[:canvas] ||= Dare.default_canvas
       @path = path
       @img = `new Image()`
       `#{@img}.src = #{path}`
-      @canvas = canvas
+      @canvas = opts[:canvas]
     end
 
     def width
@@ -35,6 +38,18 @@ module Dare
     # image.draw(100, 200, canvas: some_other_canvas)
     #
     def draw(x = 0, y = 0, opts = {})
+
+      opts[:canvas] ||= @canvas
+      %x{
+        #{opts[:canvas].context}.drawImage(
+          #{@img},
+          #{x},
+          #{y}
+        );
+      }
+    end
+
+    def draw_tile(x = 0, y = 0, opts = {})
 
       opts[:canvas] ||= @canvas
       opts[:sx] ||= 0
@@ -83,8 +98,6 @@ module Dare
       (0..9).each do |x|
         tiles << ImageTile.new(image, x*25, 0, 25, 25)
       end
-      puts tiles
-
       tiles
     end
   end
@@ -99,7 +112,7 @@ module Dare
     end
 
     def draw(x = 0, y = 0, opts = {})
-      @image.draw(x, y, sx: @x, sy: @y, swidth: @width, sheight: @height)
+      @image.draw_tile(x, y, sx: @x, sy: @y, swidth: @width, sheight: @height)
     end
   end
 end

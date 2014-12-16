@@ -9,14 +9,15 @@ module Dare
 
     attr_reader :width, :height, :ticks, :mouse_x, :mouse_y, :canvas, :key, :update_interval
 
-    # creates a new window object to hold all your game goodness
-    # options include:
-    #  :width # (default 640) sets default canvas to a particular width in pixels
-    #  :height # (default (480) sets default canvas to a particular height in pixels
-    #  :update_interval # (default 16.666666) sets the update interval in milliseconds between updates
-    #  :border # true/false (default false) draws a border around the default canvas
-    #  :canvas # a canvas to refer to when drawing.  Just let the default do its thing
-    #  :mouse # true/false (default true) turn off mouse event listeners by setting to false
+    # Creates a new window object to hold all your game goodness
+    #
+    # @param [Hash] opts the options to create a window.
+    # @options opts [Integer] :width (640) sets default canvas to a particular width in pixels
+    # @options opts [Integer] :height (480) sets default canvas to a particular height in pixels
+    # @options opts [Float] :update_interval (16.666666) sets the update interval in milliseconds between updates
+    # @options opts [Boolean] :border (false) draws a border around the default canvas
+    # @options opts [Dare::Canvas] :canvas (Dare.default_canvas) a canvas to refer to when drawing.
+    # @options opts [Boolean] :mouse (true) turn off mouse event listeners by setting to false
     #
     def initialize(opts = {})
       opts[:width] ||= 640
