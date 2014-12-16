@@ -10,7 +10,6 @@ module Dare
     attr_reader :width, :height, :ticks, :mouse_x, :mouse_y, :canvas, :key, :update_interval
 
     # Creates a new window object to hold all your game goodness
-    #
     # @param [Hash] opts the options to create a window.
     # @options opts [Integer] :width (640) sets default canvas to a particular width in pixels
     # @options opts [Integer] :height (480) sets default canvas to a particular height in pixels
