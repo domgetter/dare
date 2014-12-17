@@ -14,6 +14,8 @@ module Dare
     def draw(string = "", x = 0, y = 0, opts = {})
       %x{
         #{@canvas.context}.font = #{@font} ;
+        #{@canvas.context}.textAlign = 'left';
+        #{@canvas.context}.textBaseline = 'top';
         #{@canvas.context}.fillStyle = #{@color};
         #{@canvas.context}.fillText(#{string}, #{x}, #{y});
       }

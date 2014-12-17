@@ -42,7 +42,7 @@ module Dare
         function anim_loop() {
           requestAnimationFrame(anim_loop);
           #{update};
-          #{@canvas.context}.clearRect(0, 0, #{width}, #{height});
+          #{@canvas}.width = #{@canvas}.width;
           #{draw};
         }
         requestAnimationFrame(anim_loop);
@@ -156,9 +156,11 @@ module Dare
     end
 
     # sets the caption/title of the window to the string passed
-    def caption(title)
+    def caption=(title)
       `document.getElementById('pageTitle').innerHTML = #{title}`
     end
+
+    alias :title= :caption=
 
     # checks if game is fullscreen.  currently not implemented.
     def fullscreen?

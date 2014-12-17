@@ -44,7 +44,9 @@ module Dare
     # if resource was paused, it will start playing from where it left off
     #
     def play
-      `#{@sound}.play()`
+      @sound += 1
+      @sound %= @overlap
+      `#{@sounds[@sound]}.play()`
     end
 
     # pause the audio resource, halting playback
