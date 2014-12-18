@@ -32,6 +32,10 @@ module Dare
       @path
     end
 
+    def img
+      @img
+    end
+
     # The width of the image in pixels
     #
     # @return [Integer]
@@ -173,18 +177,24 @@ module Dare
     def self.load_tiles(path = "", opts = {})
 
       image = Image.new(path)
-      opts[:width] ||= image.width
-      opts[:height] ||= image.height
-      columns = image.width/opts[:width]
-      rows = image.height/opts[:height]
+      @tiles = []
 
-      tiles = []
-      rows.times do |row|
-        columns.times do |column|
-          tiles << ImageTile.new(image, column*opts[:width], row*opts[:height], opts[:width], opts[:height])
-        end
-      end
-      tiles
+      %x{
+        #{image.img}.onload = function() {
+          #{opts[:width] ||= image.width};
+          #{opts[:height] ||= image.height};
+          #{columns = image.width/opts[:width]};
+          #{rows = image.height/opts[:height]};
+
+          #{rows.times do |row|
+            columns.times do |column|
+              @tiles << ImageTile.new(image, column*opts[:width].to_i, row*opts[:height].to_i, opts[:width].to_i, opts[:height].to_i)
+            end
+          end};
+        }
+      }
+      @tiles
+    end
     end
   end
 
