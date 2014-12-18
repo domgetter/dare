@@ -195,7 +195,6 @@ module Dare
       }
       @tiles
     end
-    end
   end
 
   class ImageTile
