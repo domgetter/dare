@@ -6,7 +6,7 @@ require 'bundler'
 Gem::Specification.new do |spec|
 
   spec.name = 'dare'
-  spec.version = '0.1.3'
+  spec.version = '0.2.0'
   spec.date = '2014-12-17'
   spec.summary = 'Ruby 2D Game library on top of Opal'
   spec.authors = ["Dominic Muller"]
