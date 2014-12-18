@@ -6,12 +6,12 @@ require 'bundler'
 Gem::Specification.new do |spec|
 
   spec.name = 'dare'
-  spec.version = '0.1.1'
-  spec.date = '2014-12-11'
+  spec.version = '0.1.3'
+  spec.date = '2014-12-17'
   spec.summary = 'Ruby 2D Game library on top of Opal'
   spec.authors = ["Dominic Muller"]
   spec.email = 'nicklink483@gmail.com'
-  spec.files = Dir['bin/dare', 'lib/dare/*.rb', 'lib/*.rb']
+  spec.files = Dir['bin/dare', 'lib/dare/*.rb', 'lib/*.rb', 'examples/tutorial/*/**']
   spec.executables = ["dare"]
   spec.require_paths = ["lib"]
 

@@ -15,6 +15,7 @@
 /examples/example.js
 /examples/pong/pong.js
 /examples/mario/mario.js
+/examples/tutorial/tutorial.js
 
 ## Specific to RubyMotion:
 .dat*

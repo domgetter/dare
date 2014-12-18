@@ -1,5 +1,6 @@
-desc "Build pong.js"
+desc "Build tutorial.js"
 task :build do
+  gem 'dare', '0.1.2'
   gem 'opal', '0.7.0beta3'
   gem 'opal-jquery', '0.3.0beta1'
   require 'opal'
@@ -11,9 +12,9 @@ task :build do
     env.append_path path
   end
   env.append_path "."
-  env.append_path "../../lib"
+  env.append_path `bundle show dare`.chomp + '/lib'
 
-  File.open("pong.js", "w+") do |out|
-    out << env["pong"].to_s
+  File.open("tutorial.js", "w+") do |out|
+    out << env["tutorial"].to_s
   end
 end

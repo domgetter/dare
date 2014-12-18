@@ -57,8 +57,10 @@ class Ball
       @angle = (180.0-@angle)
       @game.boops[:paddle].play
     end
-    @x += Dare.offset_x(@angle, @speed)
-    @y += Dare.offset_y(@angle, @speed)
+    travel_distance = @speed*(Dare.ms-@birth)/16.666666
+    @x += Dare.offset_x(@angle, travel_distance)
+    @y += Dare.offset_y(@angle, travel_distance)
+    @birth = Dare.ms
   end
 
   def check_bounds
@@ -103,7 +105,8 @@ class Ball
     @y = Game::HEIGHT/2.0+5
     @angle = 90.0*rand - 45.0
     @angle = @angle+180.0 if rand > 0.5
-    @speed = 6.0
+    @birth = Dare.ms
+    @speed = 10.0
   end
 
 end
@@ -123,9 +126,9 @@ class Game < Dare::Window
     @paddles[0] = Paddle.new(self, :left)
     @paddles[1] = Paddle.new(self, :right)
     @boops = {}
-    @boops[:paddle] = Dare::Sound.new('assets/pong_bounce.mp3', 0.3)
-    @boops[:wall] = Dare::Sound.new('assets/wall_bounce.mp3', 0.3)
-    @score_font = Dare::Font.new(self)
+    @boops[:paddle] = Dare::Sound.new('assets/pong_bounce.mp3', volume: 0.3)
+    @boops[:wall] = Dare::Sound.new('assets/wall_bounce.mp3', volume: 0.3)
+    @score_font = Dare::Font.new
     @score = 10
   end
 

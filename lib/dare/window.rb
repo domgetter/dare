@@ -39,12 +39,15 @@ module Dare
     # starts the game loop for the window.
     def run!
       %x{
+        function update_loop() {
+          #{update};
+        }
         function anim_loop() {
           requestAnimationFrame(anim_loop);
-          #{update};
-          #{@canvas}.width = #{@canvas}.width;
+          #{@canvas.canvas}.width = #{@canvas.canvas}.width;
           #{draw};
         }
+        setInterval(update_loop, #{@update_interval});
         requestAnimationFrame(anim_loop);
       }
     end

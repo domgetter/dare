@@ -5,7 +5,7 @@ require_tree 'dare'
 module Dare
 
   # returns the current version of this gem
-  VERSION = "0.1.0"
+  VERSION = "0.1.3"
 
   # returns the magnitude of the horizontal component of a vector
   # at some angle and some magnitude where the angle is in degrees
