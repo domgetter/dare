@@ -111,7 +111,7 @@ module Dare
   KbComma = 188
   KbPeriod = 190
   KbSlash = 191
-  KbCmd ||= %x{ function(){
+  kbCmd ||= %x{ (function(){
       if($.browser.mozilla){
         return 224;
       } else if($.browser.webkit) {
@@ -119,17 +119,19 @@ module Dare
       } else {
         return 17;
       }
-    }();
+    })()
   }
-  KbCmdLeft = KbCmd
-  KbCmdRight ||= %x{ function(){
+  kbCmdRight ||= %x{ (function(){
       if($.browser.webkit) {
         return 93;
       } else {
         return 17;
       }
-    }();
+    })()
   }
+  KbCmd = kbCmd
+  KbCmdLeft = KbCmd
+  KbCmdRight = kbCmdRight
 
   module Kb
     Kb0 = 48
@@ -228,7 +230,7 @@ module Dare
     KbComma = 188
     KbPeriod = 190
     KbSlash = 191
-    KbCmd ||= %x{ function(){
+    kbCmd ||= %x{ (function(){
         if($.browser.mozilla){
           return 224;
         } else if($.browser.webkit) {
@@ -236,16 +238,18 @@ module Dare
         } else {
           return 17;
         }
-      }();
+      })()
     }
-    KbCmdLeft = KbCmd
-    KbCmdRight ||= %x{ function(){
+    kbCmdRight ||= %x{ (function(){
         if($.browser.webkit) {
           return 93;
         } else {
           return 17;
         }
-      }();
+      })()
     }
+    KbCmd = kbCmd
+    KbCmdLeft = KbCmd
+    KbCmdRight = kbCmdRight
   end
 end
