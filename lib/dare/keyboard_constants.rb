@@ -110,6 +110,25 @@ module Dare
   KbComma = 188
   KbPeriod = 190
   KbSlash = 191
+  KbCmd ||= %x{ function(){
+      if($.browser.mozilla){
+        return 224;
+      } else if($.browser.webkit) {
+        return 91;
+      } else {
+        return 17;
+      }
+    }();
+  }
+  KbCmdLeft = KbCmd
+  KbCmdRight ||= %x{ function(){
+      if($.browser.webkit) {
+        return 93;
+      } else {
+        return 17;
+      }
+    }();
+  }
 
   module Kb
     Kb0 = 48
@@ -207,5 +226,24 @@ module Dare
     KbComma = 188
     KbPeriod = 190
     KbSlash = 191
+    KbCmd ||= %x{ function(){
+        if($.browser.mozilla){
+          return 224;
+        } else if($.browser.webkit) {
+          return 91;
+        } else {
+          return 17;
+        }
+      }();
+    }
+    KbCmdLeft = KbCmd
+    KbCmdRight ||= %x{ function(){
+        if($.browser.webkit) {
+          return 93;
+        } else {
+          return 17;
+        }
+      }();
+    }
   end
 end
