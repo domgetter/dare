@@ -81,6 +81,7 @@ module Dare
   KbShift = 16
   KbControl = 17
   KbAlt = 18
+  KbCapsLock = 20
   KbNumpad0 = 96
   KbNumpad1 = 97
   KbNumpad2 = 98
@@ -197,6 +198,7 @@ module Dare
     KbShift = 16
     KbControl = 17
     KbAlt = 18
+    KbCapsLock = 20
     KbNumpad0 = 96
     KbNumpad1 = 97
     KbNumpad2 = 98
