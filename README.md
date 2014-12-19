@@ -70,14 +70,15 @@ class Game < Dare::Window
     if @x > 600
       @x = 10
     end
-    #be sure to set the x position to @x in the draw_rect method!
-    draw_rect(top_left: [@x,0], width: 50, height: 50, color: 'red')
+    @y = mouse_y # mouse_y is a helper method which returns the y-position off the mouse
+    #be sure to set the x position to @x and the y position to @y in the draw_rect method!
+    draw_rect(top_left: [@x,@y], width: 50, height: 50, color: 'red')
   end
 
 end
 ```
 
-Now `rake build`, refresh the browser, and voila!  You can press the right arrown on your keyboard, and the box will move to the right!
+Now `rake build`, refresh the browser, and voila!  You can press the right arrow on your keyboard, and the box will move to the right!  Move your mouse up and down and watch your box rise and fall!
 
 ### Images and Sound
 
