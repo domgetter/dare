@@ -1,9 +1,6 @@
 %x{
-  if(typeof window === 'undefined'){
-    $.browser = {
-      'mozilla': false;
-      'webkit': false;
-    }
+  if(typeof(window) === 'undefined'){
+    $.browser = {'mozilla': false,'webkit': false};
   }
 }
 
