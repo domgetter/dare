@@ -6,7 +6,8 @@ class DareCLI < Thor
   desc "new", "creates a new app"
   def new(app_name)
     add_file("#{app_name}/Gemfile") do
-      "gem 'dare', '0.2.0'
+      "source 'http://rubygems.org'
+gem 'dare', '0.2.0'
 gem 'opal', '0.7.0beta3'
 gem 'opal-jquery', '0.3.0beta1'"
     end
