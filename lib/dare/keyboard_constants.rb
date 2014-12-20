@@ -1,3 +1,12 @@
+%x{
+  if(typeof window === 'undefined'){
+    $.browser = {
+      'mozilla': false;
+      'webkit': false;
+    }
+  }
+}
+
 module Dare
 
   # These are the corresponding character keycodes for keyboard presses
