@@ -1,7 +1,8 @@
 %x{
-  if(typeof(window) === 'undefined'){
+  try{
+    spawn('ls');
     $.browser = {'mozilla': false,'webkit': false};
-  }
+  } catch(e) {}
 }
 
 module Dare
