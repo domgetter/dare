@@ -1,8 +1,9 @@
 %x{
+  //set jquery vars if jquery migrate doesn't work for some reason
   try{
-    spawn('ls');
-    $.browser = {'mozilla': false,'webkit': false};
-  } catch(e) {}
+    $.browser.mozilla;
+    $.browser.webkit;
+  } catch(e) { $.browser = {'mozilla': false,'webkit': false}; }
 }
 
 module Dare
