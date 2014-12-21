@@ -5,7 +5,7 @@ class Level
 
   attr_reader :background_color, :images
 
-  def initialize(path, window = Dare.default_window)
+  def initialize(path, window = Dare.default_canvas)
     @data = JSON.parse("{\n  \"id\":\"level1\",\n  \"background_color\":\"#6f84ff\",\n  \"tiles\":{\n    \"bricks\":{\n      \"ground\":[[0,12,16,12],[0,13,14,13]],\n      \"question_mark\":[[8,16]]\n    },\n    \"background\":{\n      \"hill_5\":[[0,8]],\n      \"shrub_5\":[[11,10]],\n      \"hill_3\":[[16,9]]\n    }\n  }\n}")
     @background_color = @data["background_color"]
     @tiles = @data["tiles"]
@@ -23,7 +23,7 @@ end
 
 class Camera
   attr_accessor :x
-  def initialize(window = Dare.default_window)
+  def initialize(window = Dare.default_canvas)
     @window = window
     @x = 0
   end
@@ -49,7 +49,7 @@ class Game < Dare::Window
 
   def initialize
     super width: WIDTH, height: HEIGHT, border: true
-    Dare.default_window = self
+    Dare.default_canvas = self
     @level = Level.new('level1.json')
     @camera = Camera.new
     @font = Dare::Font.new("16px Arial")

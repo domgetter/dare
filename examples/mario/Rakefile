@@ -1,9 +1,15 @@
+require 'opal'
+require 'opal-jquery'
+
 desc "Build mario.js"
 task :build do
-  require 'opal'
-  require 'opal-jquery'
+  Opal::Processor.source_map_enabled = false
+  Opal::Processor.inline_operators_enabled = true
 
-  env = Opal::Environment.new
+  env = Sprockets::Environment.new
+  Opal.paths.each do |path|
+    env.append_path path
+  end
   env.append_path "."
   env.append_path "../../lib"
 
