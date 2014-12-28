@@ -24,7 +24,6 @@ $ dare new gamename
     create  gamename/gamename.rb
     create  gamename/gamename.html
 $ cd gamename
-gamename$ bundle install
 gamename$ rake build
 gamename$
 ```

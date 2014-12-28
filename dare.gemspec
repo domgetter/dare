@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'opal', '0.7.0.beta3'
   spec.add_runtime_dependency 'opal-jquery', '0.3.0.beta1'
   spec.add_runtime_dependency 'thor', '0.19.1'
+  spec.add_runtime_dependency 'sprockets', ['~> 2', '>= 2.2.3']
 
   spec.add_development_dependency 'opal-rspec', '0.4.0.beta4'
   spec.add_development_dependency 'pry', '~> 0.10', '>=0.10.1'
