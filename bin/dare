@@ -7,16 +7,16 @@ class DareCLI < Thor
   def new(app_name)
     add_file("#{app_name}/Gemfile") do
       "source 'http://rubygems.org'
-gem 'dare', '0.2.0'
-gem 'opal', '0.7.0beta3'
-gem 'opal-jquery', '0.3.0beta1'"
+gem 'dare', '0.2.1'
+gem 'opal', '0.7.0'
+gem 'opal-jquery', '0.3.0'"
     end
     add_file "#{app_name}/Rakefile" do
 "desc \"Build #{app_name}.js\"
 task :build do
-  gem 'dare', '0.2.0'
-  gem 'opal', '0.7.0beta3'
-  gem 'opal-jquery', '0.3.0beta1'
+  gem 'dare', '0.2.1'
+  gem 'opal', '0.7.0'
+  gem 'opal-jquery', '0.3.0'
   require 'opal'
   require 'opal-jquery'
   Opal::Processor.source_map_enabled = false
@@ -61,8 +61,7 @@ end
     <title id=\"pageTitle\"></title>
     <script src=\"http://code.jquery.com/jquery-1.11.0.min.js\"></script>
     <script src=\"http://code.jquery.com/jquery-migrate-1.2.1.min.js\"></script>
-    <!-- Will add this back when 0.7.0 is released -->
-    <!-- <script src=\"http://cdn.opalrb.org/opal/0.7.0/opal.min.js\"></script> -->
+    <script src=\"http://cdn.opalrb.org/opal/0.7.0/opal.min.js\"></script>
   </head>
   <body>
     <script src=\"#{app_name}.js\"></script>
